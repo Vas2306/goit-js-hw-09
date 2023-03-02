@@ -1,0 +1,13 @@
+button{
+    font-size: 22px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    box-shadow: 10px 5px 5px rgb(134, 127, 127);
+}
+button[data-start]{
+    background-color: rgb(160, 233, 160);
+    margin-right: 25px;
+}
+button[data-stop]{
+    background-color: rgb(251, 98, 98);
+}
