@@ -1,0 +1,11 @@
+input{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid rgb(35, 27, 188);
+    border-radius: 10px;
+}
+button{
+    background-color: rgb(245, 249, 114);
+    padding: 10px;
+    border-radius: 10px;
+}
