@@ -1,9 +1,7 @@
 import flatpickr from 'flatpickr';
-import { Notify } from "notiflix";
+import { Notify } from 'notiflix';
 import 'flatpickr/dist/flatpickr.min.css';
 
-
-let selectedTime = null;
 const refs = {
   inputDate: document.querySelector('#datetime-picker'),
   startBtn: document.querySelector('button[data-start]'),
@@ -11,7 +9,11 @@ const refs = {
   hours: document.querySelector('span[data-hours]'),
   minutes: document.querySelector('span[data-minutes]'),
   seconds: document.querySelector('span[data-seconds]'),
+  timerDiv: document.querySelector('.timer')
 };
+
+refs.startBtn.classList.add('disabled');
+let selectedTime = null;
 
 function convertMs(ms) {
   const second = 1000;
@@ -22,7 +24,9 @@ function convertMs(ms) {
   const days = addLeadingZero(Math.floor(ms / day));
   const hours = addLeadingZero(Math.floor((ms % day) / hour));
   const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
-  const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
+  const seconds = addLeadingZero(
+    Math.floor((((ms % day) % hour) % minute) / second)
+  );
 
   return { days, hours, minutes, seconds };
 }
@@ -38,10 +42,11 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0] < Date.now()) {
-      Notify.failure('Please choose a date in the future');  
+      Notify.failure('Please choose a date in the future');
       selectedDates[0] = new Date();
     } else {
       refs.startBtn.disabled = false;
+      refs.startBtn.classList.remove('disabled');
       selectedTime = selectedDates[0];
     }
   },
@@ -67,6 +72,7 @@ class Timer {
       this.updateComponentsTimer(componentsTimer);
       if (deltaTime <= 0) {
         this.stopTimer();
+        refs.timerDiv.innerHTML = 'Time is over!';
       }
     }, 1000);
   }

@@ -2,7 +2,7 @@
 const refs = {
   btnStart: document.querySelector('button[data-start]'),
   btnStop: document.querySelector('button[data-stop]'),
-  body: document.querySelector('body'),
+  body: document.body,
 };
 
 const COLOR_CHANGE_DELAY = 1000;
